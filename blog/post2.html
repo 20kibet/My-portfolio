@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artificial Intelligence in Modern Web Development — Geff | Blog</title>
+  <meta name="description" content="How AI is reshaping the way we build, test, and ship web applications — from code generation to intelligent UX." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <style>
+    .post-hero { padding: 9rem 0 0; background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+    .post-hero-inner { max-width: 780px; margin: 0 auto; padding: 0 2rem 3rem; }
+    .post-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; font-family: var(--font-mono); }
+    .post-breadcrumb a { transition: color var(--t); }
+    .post-breadcrumb a:hover { color: var(--accent); }
+    .post-breadcrumb span { color: var(--border-2); }
+    .post-meta-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .post-read-time, .post-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+    h1.post-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.1; color: var(--text-solid); margin-bottom: 1.25rem; }
+    .post-subtitle { font-size: 1.15rem; color: var(--muted); line-height: 1.8; max-width: 640px; }
+    .post-cover { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+    .post-cover img { width: 100%; border-radius: var(--r-lg) var(--r-lg) 0 0; max-height: 420px; object-fit: cover; }
+    .post-cover-placeholder { width: 100%; height: 380px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: var(--r-lg) var(--r-lg) 0 0; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+    .post-body-wrap { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .post-content h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text-solid); margin: 3rem 0 1rem; line-height: 1.2; }
+    .post-content h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-solid); margin: 2rem 0 0.75rem; }
+    .post-content p { color: var(--muted); line-height: 1.95; margin-bottom: 1.25rem; font-size: 1.05rem; }
+    .post-content p strong { color: var(--text-solid); font-weight: 600; }
+    .post-content ul, .post-content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--muted); }
+    .post-content li { margin-bottom: 0.6rem; line-height: 1.8; font-size: 1.02rem; }
+    .post-content li strong { color: var(--text-solid); }
+    .post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .post-content pre { background: var(--text-solid); color: #e8e4d9; border-radius: var(--r-md); padding: 1.5rem; overflow-x: auto; margin: 1.75rem 0; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.8; box-shadow: var(--shadow-lg); }
+    [data-theme="dark"] .post-content pre { background: var(--surface); border: 1px solid var(--border); }
+    .post-content code { font-family: var(--font-mono); font-size: 0.85em; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 0.15em 0.45em; color: var(--accent); }
+    .post-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+    .callout { border-left: 3px solid var(--accent); background: rgba(212, 98, 42, 0.06); border-radius: 0 var(--r-md) var(--r-md) 0; padding: 1.25rem 1.5rem; margin: 2rem 0; }
+    .callout p { margin: 0; font-size: 0.98rem; }
+    .callout-title { font-weight: 700; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .callout.info { border-color: var(--accent-2); background: rgba(37, 99, 196, 0.06); }
+    .callout.info .callout-title { color: var(--accent-2); }
+    .callout.green { border-color: var(--green); background: rgba(30, 122, 74, 0.06); }
+    .callout.green .callout-title { color: var(--green); }
+    .post-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+    .post-author { display: flex; gap: 1.25rem; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.75rem; margin-top: 3rem; }
+    .author-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .author-name { font-weight: 700; color: var(--text-solid); margin-bottom: 0.2rem; }
+    .author-role { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .author-bio { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+    .post-nav-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.25rem; transition: all var(--t); display: flex; flex-direction: column; gap: 0.35rem; }
+    .post-nav-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .post-nav-item.next { text-align: right; }
+    .post-nav-dir { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .post-nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text-solid); line-height: 1.4; transition: color var(--t); }
+    .post-nav-item:hover .post-nav-title { color: var(--accent); }
+
+    /* AI tools grid */
+    .ai-tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0; }
+    .ai-tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.25rem; }
+    .ai-tool-card .icon { font-size: 1.75rem; margin-bottom: 0.6rem; }
+    .ai-tool-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-solid); margin-bottom: 0.3rem; }
+    .ai-tool-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; margin: 0; }
+    @media (max-width: 600px) { .ai-tools-grid { grid-template-columns: 1fr; } .post-nav { grid-template-columns: 1fr; } .post-nav-item.next { text-align: left; } }
+  </style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="icon">🌙</span><span class="label">Dark</span></button>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="../index.html">Home</a><a href="../about.html">About</a>
+  <a href="../projects.html">Projects</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</nav>
+
+<header class="post-hero">
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="../blog.html">Blog</a>
+      <span>/</span>
+      <span>Artificial Intelligence</span>
+    </div>
+    <div class="post-meta-row">
+      <span class="tag tag-accent">AI</span>
+      <span class="tag">Web Dev</span>
+      <span class="post-read-time">7 min read</span>
+      <span class="post-date">January 28, 2025</span>
+    </div>
+    <h1 class="post-title">Artificial Intelligence in Modern Web Development</h1>
+    <p class="post-subtitle">
+      AI isn't just a buzzword anymore — it's reshaping how we write code, design experiences,
+      and ship products. Here's how I'm actually using it day-to-day as a full-stack developer,
+      and where I think it's headed.
+    </p>
+  </div>
+</header>
+
+<div class="post-cover">
+    <img src="../images/projects/post2.jpeg" alt="Abstract illustration of AI concepts and web development" />
+</div>
+
+<main class="post-body-wrap">
+  <article class="post-content">
+
+    <p>
+      Two years ago, AI in web development meant a chatbot widget in the corner of your landing page.
+      Today, it means <strong>Copilot autocompleting your entire function</strong>, a model generating
+      your test suite, and a vector database powering your app's semantic search — all in the same
+      afternoon sprint. The pace of change is genuinely breathtaking, and I say that as someone
+      who was skeptical of the hype for a long time.
+    </p>
+    <p>
+      Let me share what I've actually integrated into my workflow and projects — no fluff, just
+      what's working and what isn't.
+    </p>
+
+    <h2>AI tools I use every single day</h2>
+    <p>
+      The first wave of useful AI wasn't the big dramatic stuff — it was the quiet, unglamorous
+      productivity boosts that compound over time.
+    </p>
+
+    <div class="ai-tools-grid">
+      <div class="ai-tool-card">
+        <div class="icon">⚡</div>
+        <h4>GitHub Copilot</h4>
+        <p>Autocompletes boilerplate, suggests test cases, and finishes repetitive patterns. Saves roughly 20–30 minutes per day on the small stuff.</p>
+      </div>
+      <div class="ai-tool-card">
+        <div class="icon">🧠</div>
+        <h4>Claude / ChatGPT</h4>
+        <p>Architecture discussions, debugging sessions, and writing first drafts of documentation. Think of it as a senior dev you can ask anything.</p>
+      </div>
+      <div class="ai-tool-card">
+        <div class="icon">🔍</div>
+        <h4>Cursor IDE</h4>
+        <p>An AI-native code editor that understands your entire codebase context. The "chat with your repo" feature alone is worth it.</p>
+      </div>
+      <div class="ai-tool-card">
+        <div class="icon">🧪</div>
+        <h4>Codium AI</h4>
+        <p>Generates meaningful test cases by analyzing your code's logic. Not perfect, but gets you to 80% coverage scaffolding instantly.</p>
+      </div>
+    </div>
+
+    <h2>Building AI features into your own apps</h2>
+    <p>
+      Using AI tools is one thing — <strong>building AI-powered features</strong> into your products
+      is the real opportunity. Here are three patterns I've implemented that genuinely moved the needle.
+    </p>
+
+    <h3>1. Semantic search with vector embeddings</h3>
+    <p>
+      Traditional SQL search is keyword-based — the user has to type the exact word that matches.
+      With vector embeddings, you can build search that understands <em>meaning</em>. A user searching
+      for "running shoes" will also find "athletic footwear" and "marathon trainers."
+    </p>
+
+    <pre><code>// Generate embedding for a search query using OpenAI
+const embedding = await openai.embeddings.create({
+  model: "text-embedding-3-small",
+  input: userQuery,
+});
+
+// Search Postgres with pgvector
+const results = await db.$queryRaw`
+  SELECT *, 1 - (embedding <=> ${embedding.data[0].embedding}::vector) AS similarity
+  FROM products
+  ORDER BY similarity DESC
+  LIMIT 10;
+`;</code></pre>
+
+    <div class="callout green">
+      <div class="callout-title">✅ Real result</div>
+      <p>After implementing semantic search on ShopFlow, product discovery rates improved by 34%
+      and "no results found" searches dropped by 60%.</p>
+    </div>
+
+    <h3>2. AI-generated content moderation</h3>
+    <p>
+      Manually moderating user reviews and comments doesn't scale. Using a lightweight classifier
+      (even a simple prompt to GPT-3.5) can automatically flag inappropriate content for human review,
+      reducing moderation workload by 80%+.
+    </p>
+
+    <h3>3. Smart form autofill and suggestions</h3>
+    <p>
+      On checkout forms, I used an AI model to predict likely values (city from postal code, state
+      from city) and suggest corrections to common address errors. Small UX improvement, significant
+      reduction in failed deliveries.
+    </p>
+
+    <h2>What AI genuinely can't do (yet)</h2>
+    <p>
+      Here's where I push back on the hype. After extensive use, AI tools consistently struggle with:
+    </p>
+
+    <ul>
+      <li><strong>Understanding business context:</strong> AI doesn't know why your codebase made certain tradeoffs. It optimises for patterns, not constraints.</li>
+      <li><strong>Long-range architecture decisions:</strong> It can help design a single service, but it can't reason about your org's velocity, team skills, or 3-year technical roadmap.</li>
+      <li><strong>Debugging deeply stateful systems:</strong> Complex race conditions, distributed system faults, and database corruption scenarios still require deep human expertise.</li>
+      <li><strong>Security review:</strong> AI will miss subtle vulnerabilities. Never trust AI-generated code in security-critical paths without expert review.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-title">🔑 My rule of thumb</div>
+      <p>Use AI to go faster on things you already understand. Don't use it to do things you
+      don't understand — that's how bugs and security holes enter your codebase invisibly.</p>
+    </div>
+
+    <h2>Where I think this is all going</h2>
+    <p>
+      The next 2–3 years will bring AI from "developer tool" to "development collaborator."
+      We'll see agents that can take a GitHub issue and open a PR with a working implementation.
+      We'll see AI that monitors production and suggests code fixes based on error logs.
+    </p>
+    <p>
+      Does this mean developers are going away? Absolutely not. But the developers who will thrive
+      are those who <strong>learn to direct AI effectively</strong> — who understand systems deeply
+      enough to verify what the AI produces, and who can spot when it's confidently wrong.
+    </p>
+    <p>
+      The skill isn't coding anymore — it's <strong>engineering judgment</strong>. And that, for now,
+      is still very human.
+    </p>
+
+    <hr class="post-divider" />
+
+    <p>
+      Curious how I'm using AI specifically in the projects on this portfolio? Drop me a message on
+      <a href="https://www.linkedin.com/in/kibet-ronoh-5794643aa" target="_blank">LinkedIn</a> or
+      <a href="../contact.html">use the contact form</a> — I'm always happy to talk shop.
+    </p>
+
+    <div class="post-author">
+      <div class="author-avatar">👨‍💻</div>
+      <div>
+        <div class="author-name">Geoffrey Kibet Rono (Geff)</div>
+        <div class="author-role">Full-Stack Developer · Nairobi, Kenya</div>
+        <div class="author-bio">Building scalable web apps across the full stack. Writing about the tools, patterns, and hard lessons from real production systems.</div>
+      </div>
+    </div>
+
+    <nav class="post-nav" aria-label="Post navigation">
+      <a href="post1.html" class="post-nav-item">
+        <span class="post-nav-dir">← Previous</span>
+        <span class="post-nav-title">Why I Migrated from REST to tRPC</span>
+      </a>
+      <a href="post3.html" class="post-nav-item next">
+        <span class="post-nav-dir">Next →</span>
+        <span class="post-nav-title">DevSecOps: Building Security Into Your Dev Pipeline</span>
+      </a>
+    </nav>
+
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+        <p>Full-Stack Developer crafting clean, performant web experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html">Projects</a></li><li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:kibet.ronoh@outlook.com">kibet.ronoh@outlook.com</a></li>
+          <li><a href="tel:+254796311695">+254 796 311 695</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Geoffrey Kibet Rono. Built with ☕ & clean code.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Geoffrey Kibet Rono</title>
+  <meta name="description" content="Learn more about Geoffrey Kibet Rono, a full-stack developer with 4+ years of experience." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+      padding: 7rem 0;
+    }
+    .sticky-photo { position: sticky; top: calc(var(--nav-h) + 2rem); }
+    .profile-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--r-lg);
+      background: linear-gradient(135deg, var(--bg-alt), var(--border));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .profile-links { display: flex; flex-direction: column; gap: 0.65rem; }
+    .profile-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.87rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--t);
+    }
+    .profile-link:last-child { border: none; }
+    .profile-link:hover { color: var(--accent); }
+    .profile-link svg { flex-shrink: 0; }
+
+    .about-content h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-solid);
+      margin: 2.5rem 0 1rem;
+    }
+    .about-content h2:first-child { margin-top: 0; }
+    .about-content p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    .about-content p strong { color: var(--text-solid); font-weight: 600; }
+
+    .experience-list { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-date {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding-top: 0.25rem;
+    }
+    .exp-role {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-solid);
+      margin-bottom: 0.3rem;
+    }
+    .exp-company {
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.65rem;
+    }
+    .exp-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .vals-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .val-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 1.5rem;
+      transition: border-color var(--t);
+    }
+    .val-card:hover { border-color: var(--accent); }
+    .val-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .val-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--text-solid); margin-bottom: 0.4rem; }
+    .val-card p  { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    @media (max-width: 1024px) {
+      .about-hero { grid-template-columns: 1fr; }
+      .sticky-photo { position: static; max-width: 300px; }
+      .vals-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="icon">🌙</span><span class="label">Dark</span></button>
+      <a href="assets/resume.pdf" class="btn btn-primary" download data-resume>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="projects.html">Projects</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="about-hero">
+
+      <!-- Sticky sidebar -->
+      <aside class="sticky-photo reveal">
+        <div class="profile-img">👨‍💻</div>
+        <div class="profile-links">
+          <a href="mailto:kibet.ronoh@outlook.com" class="profile-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            kibet.ronoh@outlook.com
+          </a>
+          <a href="tel:+254796311695" class="profile-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.19-1.19a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+            +254 796 311 695
+          </a>
+          <a href="https://www.linkedin.com/in/kibet-ronoh-5794643aa" target="_blank" rel="noopener" class="profile-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/kibet-ronoh
+          </a>
+          <a href="assets/resume.pdf" class="profile-link" download data-resume>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Resume
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <article class="about-content">
+        <div class="section-label reveal">About Me</div>
+        <h1 class="section-title reveal reveal-delay-1">Hi, I'm Geff.</h1>
+
+        <div class="reveal reveal-delay-2">
+          <p>
+            I'm <strong>Geoffrey Kibet Rono</strong> — a <strong>Full-Stack Developer</strong> based in Nairobi, Kenya.
+            I work across the entire stack — from crafting pixel-perfect UIs to designing robust APIs
+            and architecting cloud infrastructure.
+          </p>
+          <p>
+            My journey started when I fell in love with the idea that code could build anything.
+            Since then, I've worked to ship products that real people
+            use every day. I care deeply about <strong>code quality, developer experience,</strong> and
+            the humans on the other side of the screen.
+          </p>
+          <p>
+            When I'm not coding, you'll find me contributing to open-source, writing technical articles,
+            exploring new frameworks, or enjoying the energy of Nairobi's growing tech scene.
+          </p>
+        </div>
+
+        <!-- Values -->
+        <h2 class="reveal">What I believe in</h2>
+        <div class="vals-grid">
+          <div class="val-card reveal">
+            <div class="val-icon">🎯</div>
+            <h3>Ship with purpose</h3>
+            <p>Every line of code should serve the user. I build with intent, not just habit.</p>
+          </div>
+          <div class="val-card reveal reveal-delay-1">
+            <div class="val-icon">🔍</div>
+            <h3>Sweat the details</h3>
+            <p>The difference between good and great is attention to the small stuff that most people skip.</p>
+          </div>
+          <div class="val-card reveal reveal-delay-2">
+            <div class="val-icon">🤝</div>
+            <h3>Collaborate openly</h3>
+            <p>The best code comes from teams who communicate well and check egos at the door.</p>
+          </div>
+          <div class="val-card reveal reveal-delay-3">
+            <div class="val-icon">📚</div>
+            <h3>Always be learning</h3>
+            <p>The tech landscape never stops evolving. Neither do I.</p>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <h2 class="reveal">Work Experience</h2>
+        <div class="experience-list">
+          <div class="exp-item reveal">
+            <div class="exp-date">2023 — Now</div>
+            <div>
+              <div class="exp-role">Senior Full-Stack Engineer</div>
+              <div class="exp-company">TechCorp Inc. · Nairobi, Kenya</div>
+              <p class="exp-desc">Led development of the company's core SaaS platform, migrating from a monolith to microservices. Improved API response time by 60% and reduced infrastructure costs by 35%.</p>
+            </div>
+          </div>
+          <div class="exp-item reveal">
+            <div class="exp-date">2022 — 2023</div>
+            <div>
+              <div class="exp-role">Full-Stack Developer</div>
+              <div class="exp-company">StartupXYZ · Remote</div>
+              <p class="exp-desc">Built the MVP from scratch — React frontend, Node.js API, PostgreSQL — that helped the company close its seed round. Wore many hats: dev, DevOps, and occasional designer.</p>
+            </div>
+          </div>
+          <div class="exp-item reveal">
+            <div class="exp-date">2020 — 2022</div>
+            <div>
+              <div class="exp-role">Junior Frontend Developer</div>
+              <div class="exp-company">Digital Agency Co. · Los Angeles, CA</div>
+              <p class="exp-desc">Delivered 15+ client websites using React and Vue.js. Introduced component libraries and coding standards that cut development time by 25%.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <h2 class="reveal">Education</h2>
+        <div class="experience-list">
+          <div class="exp-item reveal">
+            <div class="exp-date">2016 — 2020</div>
+            <div>
+              <div class="exp-role">B.S. Computer Science</div>
+              <div class="exp-company">University of California, Berkeley</div>
+              <p class="exp-desc">Graduated with honors. Focus on distributed systems and human-computer interaction. President of the Web Development Club.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="display:flex; gap:1rem; margin-top: 2rem;" class="reveal">
+          <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+          <a href="projects.html" class="btn btn-outline">See My Work</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+        <p>Full-Stack Developer crafting clean, performant web experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:kibet.ronoh@outlook.com">kibet.ronoh@outlook.com</a></li>
+          <li><a href="assets/resume.pdf" download>Download Resume</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Geoffrey Kibet Rono. Built with ☕ &amp; clean code.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

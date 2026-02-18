@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Geoffrey Kibet Rono</title>
+  <meta name="description" content="Technical articles on full-stack development, architecture, and the craft of building software." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 4rem;
+      align-items: start;
+      padding: 5rem 0;
+    }
+
+    /* Featured post */
+    .blog-featured {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      transition: box-shadow var(--t);
+    }
+    .blog-featured:hover { box-shadow: var(--shadow-lg); }
+    .blog-featured-img {
+      aspect-ratio: 16/7;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+    .blog-featured-label {
+      position: absolute;
+      top: 1.25rem; left: 1.25rem;
+      background: #fff;
+      color: var(--accent);
+      border-radius: 100px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .blog-featured-body { padding: 2rem; }
+    .blog-featured-body .blog-card-meta { margin-bottom: 0.85rem; }
+    .blog-featured-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-solid);
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+      transition: color var(--t);
+    }
+    .blog-featured:hover h2 { color: var(--accent); }
+    .blog-featured-body p { color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; }
+
+    /* Post list */
+    .posts-list { display: flex; flex-direction: column; gap: 0; }
+    .post-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all var(--t);
+    }
+    .post-item:last-child { border-bottom: none; }
+    .post-item:hover .post-title { color: var(--accent); }
+    .post-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--border-2);
+      line-height: 1;
+      padding-top: 0.25rem;
+      transition: color var(--t);
+    }
+    .post-item:hover .post-num { color: var(--accent); }
+    .post-meta { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; }
+    .post-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-solid);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      transition: color var(--t);
+    }
+    .post-excerpt { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+    /* Sidebar */
+    .blog-sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); }
+    .sidebar-widget {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-widget h3 {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .topic-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .topic-pill {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all var(--t);
+    }
+    .topic-pill:hover, .topic-pill.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .popular-list { display: flex; flex-direction: column; gap: 0; }
+    .popular-item {
+      display: flex;
+      gap: 0.85rem;
+      align-items: start;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .popular-item:last-child { border-bottom: none; }
+    .popular-rank {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      font-weight: 500;
+      padding-top: 2px;
+    }
+    .popular-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-solid);
+      line-height: 1.45;
+      transition: color var(--t);
+    }
+    .popular-title:hover { color: var(--accent); }
+
+    @media (max-width: 1024px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .blog-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Geff<span class="dot">.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="icon">🌙</span><span class="label">Dark</span></button>
+      <a href="assets/resume.pdf" class="btn btn-primary" download data-resume>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="projects.html">Projects</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="section-label" style="justify-content:center;">Writing</div>
+    <h1 class="section-title">The Blog</h1>
+    <p class="section-desc">
+      Thoughts on development, architecture, open-source, and the craft of building great software.
+    </p>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="blog-layout">
+      <!-- Posts -->
+      <div>
+        <!-- Featured -->
+        <a href="blog/post1.html" class="blog-featured reveal" style="display:block;color:inherit;">
+          <div class="blog-featured-img">
+            📐
+            <span class="blog-featured-label">✦ Featured</span>
+          </div>
+          <div class="blog-featured-body">
+            <div class="blog-card-meta">
+              <span class="tag tag-accent">Architecture</span>
+              <span class="blog-read-time font-mono" style="font-size:0.72rem;color:var(--muted);">8 min read</span>
+              <span class="blog-date font-mono" style="font-size:0.72rem;color:var(--muted);">Feb 10, 2025</span>
+            </div>
+            <h2>Why I Migrated from REST to tRPC — and What I Learned</h2>
+            <p>
+              Type-safe APIs are fundamentally changing how I think about full-stack development.
+              After migrating a production app with 50+ endpoints, here's everything I learned
+              about the tradeoffs, the wins, and the gotchas nobody talks about.
+            </p>
+            <span class="btn btn-ghost" style="padding-left:0;">
+              Read Article
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Post list -->
+        <div class="posts-list">
+          <a href="blog/post2.html" class="post-item reveal">
+            <div class="post-num">01</div>
+            <div>
+              <div class="post-meta">
+                <span class="tag">Performance</span>
+                <span class="blog-read-time font-mono" style="font-size:0.7rem;color:var(--muted);">6 min · Jan 28, 2025</span>
+              </div>
+              <h3 class="post-title">React Server Components: A Practical Guide for 2025</h3>
+              <p class="post-excerpt">RSC changes everything about data fetching. Here's a practical breakdown with real-world patterns and pitfalls.</p>
+            </div>
+          </a>
+
+          <a href="blog/post3.html" class="post-item reveal">
+            <div class="post-num">02</div>
+            <div>
+              <div class="post-meta">
+                <span class="tag">DevOps</span>
+                <span class="blog-read-time font-mono" style="font-size:0.7rem;color:var(--muted);">5 min · Jan 14, 2025</span>
+              </div>
+              <h3 class="post-title">Zero-Downtime Deployments with Docker and GitHub Actions</h3>
+              <p class="post-excerpt">A step-by-step guide to keeping your app live during every single deployment with blue-green deploys.</p>
+            </div>
+          </a>
+
+          <a href="#" class="post-item reveal">
+            <div class="post-num">03</div>
+            <div>
+              <div class="post-meta">
+                <span class="tag">Database</span>
+                <span class="blog-read-time font-mono" style="font-size:0.7rem;color:var(--muted);">7 min · Dec 30, 2024</span>
+              </div>
+              <h3 class="post-title">PostgreSQL Query Optimization: From 4 Seconds to 40ms</h3>
+              <p class="post-excerpt">A real debugging story about indexes, EXPLAIN ANALYZE, and the query that was silently killing our API.</p>
+            </div>
+          </a>
+
+          <a href="#" class="post-item reveal">
+            <div class="post-num">04</div>
+            <div>
+              <div class="post-meta">
+                <span class="tag">Frontend</span>
+                <span class="blog-read-time font-mono" style="font-size:0.7rem;color:var(--muted);">4 min · Dec 15, 2024</span>
+              </div>
+              <h3 class="post-title">Building a Design System That Developers Actually Use</h3>
+              <p class="post-excerpt">The principles and practices behind design systems that get adopted — not abandoned — by your team.</p>
+            </div>
+          </a>
+
+          <a href="#" class="post-item reveal">
+            <div class="post-num">05</div>
+            <div>
+              <div class="post-meta">
+                <span class="tag">Go</span>
+                <span class="blog-read-time font-mono" style="font-size:0.7rem;color:var(--muted);">9 min · Nov 28, 2024</span>
+              </div>
+              <h3 class="post-title">Why I'm Learning Go as a JavaScript Developer</h3>
+              <p class="post-excerpt">Two months into learning Go and I already see my JavaScript differently. Here's what the language taught me.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="blog-sidebar reveal">
+        <div class="sidebar-widget">
+          <h3>Topics</h3>
+          <div class="topic-pills">
+            <span class="topic-pill active">All</span>
+            <span class="topic-pill">Architecture</span>
+            <span class="topic-pill">Frontend</span>
+            <span class="topic-pill">Backend</span>
+            <span class="topic-pill">DevOps</span>
+            <span class="topic-pill">Database</span>
+            <span class="topic-pill">Go</span>
+            <span class="topic-pill">Open Source</span>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>Popular Posts</h3>
+          <div class="popular-list">
+            <div class="popular-item">
+              <span class="popular-rank">#1</span>
+              <a href="#" class="popular-title">PostgreSQL Query Optimization: From 4s to 40ms</a>
+            </div>
+            <div class="popular-item">
+              <span class="popular-rank">#2</span>
+              <a href="#" class="popular-title">Why I Migrated from REST to tRPC</a>
+            </div>
+            <div class="popular-item">
+              <span class="popular-rank">#3</span>
+              <a href="#" class="popular-title">Building a Design System Developers Use</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-widget" style="background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; color: #fff;">
+          <h3 style="color: rgba(255,255,255,0.7);">Newsletter</h3>
+          <p style="font-size:0.88rem; margin-bottom:1rem; color: rgba(255,255,255,0.85); line-height: 1.65;">
+            Get new articles in your inbox. No spam, ever.
+          </p>
+          <input type="email" placeholder="your@email.com"
+            style="width:100%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:var(--r-sm);padding:0.65rem 0.9rem;font-family:var(--font-body);font-size:0.88rem;color:#fff;margin-bottom:0.75rem;outline:none;" />
+          <button class="btn" style="background:#fff;color:var(--text-solid);width:100%;justify-content:center;font-weight:600;">
+            Subscribe →
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">  Geff<span class="dot">.</span>dev</a>
+        <p>Full-Stack Developer crafting clean, performant web experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:kibet.ronoh@outlook.com">kibet.ronoh@outlook.com</a></li>
+          <li><a href="assets/resume.pdf" download>Download Resume</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Geoffrey Kibet Rono. Built with ☕ &amp; clean code.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script>
+  // Topic filter pills
+  document.querySelectorAll('.topic-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

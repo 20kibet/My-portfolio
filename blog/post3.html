@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevSecOps: Building Security Into Your Dev Pipeline — Geff | Blog</title>
+  <meta name="description" content="Security shouldn't be an afterthought. Here's how to bake it into every stage of your development pipeline without slowing your team down." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <style>
+    .post-hero { padding: 9rem 0 0; background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+    .post-hero-inner { max-width: 780px; margin: 0 auto; padding: 0 2rem 3rem; }
+    .post-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; font-family: var(--font-mono); }
+    .post-breadcrumb a { transition: color var(--t); }
+    .post-breadcrumb a:hover { color: var(--accent); }
+    .post-breadcrumb span { color: var(--border-2); }
+    .post-meta-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .post-read-time, .post-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+    h1.post-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.1; color: var(--text-solid); margin-bottom: 1.25rem; }
+    .post-subtitle { font-size: 1.15rem; color: var(--muted); line-height: 1.8; max-width: 640px; }
+    .post-cover { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+    .post-cover-placeholder { width: 100%; height: 380px; background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #4a1515 100%); border-radius: var(--r-lg) var(--r-lg) 0 0; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+    .post-body-wrap { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .post-content h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text-solid); margin: 3rem 0 1rem; line-height: 1.2; }
+    .post-content h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-solid); margin: 2rem 0 0.75rem; }
+    .post-content p { color: var(--muted); line-height: 1.95; margin-bottom: 1.25rem; font-size: 1.05rem; }
+    .post-content p strong { color: var(--text-solid); font-weight: 600; }
+    .post-content ul, .post-content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--muted); }
+    .post-content li { margin-bottom: 0.6rem; line-height: 1.8; font-size: 1.02rem; }
+    .post-content li strong { color: var(--text-solid); }
+    .post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .post-content pre { background: var(--text-solid); color: #e8e4d9; border-radius: var(--r-md); padding: 1.5rem; overflow-x: auto; margin: 1.75rem 0; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.8; box-shadow: var(--shadow-lg); }
+    [data-theme="dark"] .post-content pre { background: var(--surface); border: 1px solid var(--border); }
+    .post-content code { font-family: var(--font-mono); font-size: 0.85em; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 0.15em 0.45em; color: var(--accent); }
+    .post-content pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
+    .callout { border-left: 3px solid var(--accent); background: rgba(212, 98, 42, 0.06); border-radius: 0 var(--r-md) var(--r-md) 0; padding: 1.25rem 1.5rem; margin: 2rem 0; }
+    .callout p { margin: 0; font-size: 0.98rem; }
+    .callout-title { font-weight: 700; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .callout.danger { border-color: #e53e3e; background: rgba(229, 62, 62, 0.06); }
+    .callout.danger .callout-title { color: #e53e3e; }
+    .callout.green { border-color: var(--green); background: rgba(30, 122, 74, 0.06); }
+    .callout.green .callout-title { color: var(--green); }
+    .post-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+    .post-author { display: flex; gap: 1.25rem; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.75rem; margin-top: 3rem; }
+    .author-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .author-name { font-weight: 700; color: var(--text-solid); margin-bottom: 0.2rem; }
+    .author-role { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .author-bio { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+    .post-nav-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 1.25rem; transition: all var(--t); display: flex; flex-direction: column; gap: 0.35rem; }
+    .post-nav-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .post-nav-item.next { text-align: right; }
+    .post-nav-dir { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .post-nav-title { font-size: 0.9rem; font-weight: 600; color: var(--text-solid); line-height: 1.4; transition: color var(--t); }
+    .post-nav-item:hover .post-nav-title { color: var(--accent); }
+
+    /* Pipeline diagram */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+    .pipeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      min-width: 70px;
+    }
+    .pipeline-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .pipeline-icon.secure { border-color: var(--green); background: rgba(30,122,74,0.1); }
+    .pipeline-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-align: center; }
+    .pipeline-arrow { color: var(--border-2); font-size: 1.2rem; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .post-nav { grid-template-columns: 1fr; }
+      .post-nav-item.next { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">Geff<span class="dot">.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="icon">🌙</span><span class="label">Dark</span></button>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="../index.html">Home</a><a href="../about.html">About</a>
+  <a href="../projects.html">Projects</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</nav>
+
+<header class="post-hero">
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="../blog.html">Blog</a>
+      <span>/</span>
+      <span>DevSecOps</span>
+    </div>
+    <div class="post-meta-row">
+      <span class="tag tag-accent">DevSecOps</span>
+      <span class="tag">Security</span>
+      <span class="post-read-time">9 min read</span>
+      <span class="post-date">January 14, 2025</span>
+    </div>
+    <h1 class="post-title">DevSecOps: Building Security Into Your Dev Pipeline</h1>
+    <p class="post-subtitle">
+      Security bolted on at the end is security that fails. Here's how to shift it left —
+      baking it into every stage of your pipeline so your team ships safe code fast,
+      without security becoming a bottleneck.
+    </p>
+  </div>
+</header>
+
+<div class="post-cover">
+    <img src="../images/projects/post3.jpeg" alt="Abstract illustration of DevSecOps concepts and secure development pipeline" />
+</div>
+
+<main class="post-body-wrap">
+  <article class="post-content">
+
+    <p>
+      There's a pattern I've seen at almost every company I've worked with: security is
+      treated as a final gate. Code gets written, features get shipped, and then — right before
+      release — someone runs a vulnerability scan, finds 47 issues, and the whole timeline blows up.
+    </p>
+    <p>
+      <strong>DevSecOps breaks this pattern</strong> by making security a shared, continuous
+      responsibility across development, operations, and security teams. The core idea is simple:
+      <em>shift security left</em> — catch vulnerabilities when they're cheapest to fix, which is
+      before they're ever committed to your codebase.
+    </p>
+
+    <div class="callout danger">
+      <div class="callout-title">⚠️ Reality check</div>
+      <p>According to IBM's Cost of a Data Breach report, vulnerabilities found in production cost
+      15x more to fix than those caught during development. Shifting left isn't just good engineering
+      — it's good business.</p>
+    </div>
+
+    <h2>The DevSecOps pipeline: what it looks like</h2>
+    <p>Here's how a security-integrated CI/CD pipeline flows from code commit to deployment:</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="pipeline-icon secure">✍️</div>
+        <div class="pipeline-label">Code<br/>Write</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon secure">🔍</div>
+        <div class="pipeline-label">SAST<br/>Scan</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon secure">📦</div>
+        <div class="pipeline-label">Dep<br/>Audit</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon secure">🧪</div>
+        <div class="pipeline-label">DAST<br/>Test</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon secure">🐳</div>
+        <div class="pipeline-label">Image<br/>Scan</div>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon secure">🚀</div>
+        <div class="pipeline-label">Deploy<br/>Monitor</div>
+      </div>
+    </div>
+
+    <h2>Step 1 — Static Analysis (SAST) in your IDE and CI</h2>
+    <p>
+      Static Application Security Testing (SAST) analyses your source code for vulnerabilities
+      without executing it. The goal is to catch issues — SQL injection patterns, hardcoded secrets,
+      insecure function calls — <strong>before they're even committed.</strong>
+    </p>
+
+    <h3>Tools I use</h3>
+    <ul>
+      <li><strong>ESLint with security plugins:</strong> <code>eslint-plugin-security</code> and <code>eslint-plugin-no-secrets</code> catch common JS/TS security issues at save time.</li>
+      <li><strong>Semgrep:</strong> Open-source SAST that runs in CI. Write custom rules or use their huge library of security patterns.</li>
+      <li><strong>SonarQube:</strong> More comprehensive, great for teams. Integrates with GitHub PRs and blocks merges on critical findings.</li>
+    </ul>
+
+    <h3>GitHub Actions setup — SAST on every PR</h3>
+    <pre><code># .github/workflows/security.yml
+name: Security Scan
+
+on: [pull_request]
+
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Semgrep SAST
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: >-
+            p/javascript
+            p/nodejs
+            p/owasp-top-ten
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}</code></pre>
+
+    <h2>Step 2 — Dependency auditing</h2>
+    <p>
+      Your <code>node_modules</code> is someone else's code — and it's the #1 attack surface most
+      developers completely ignore. Outdated packages with known CVEs are responsible for a
+      huge percentage of real-world breaches.
+    </p>
+
+    <pre><code># Add to your CI pipeline
+- name: Audit dependencies
+  run: |
+    npm audit --audit-level=high
+    npx better-npm-audit audit --level high
+
+# Or use Snyk for richer reporting
+- name: Snyk vulnerability scan
+  uses: snyk/actions/node@master
+  env:
+    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}</code></pre>
+
+    <div class="callout">
+      <div class="callout-title">💡 Pro tip</div>
+      <p>Set up Dependabot or Renovate Bot to automatically open PRs when dependencies have security
+      updates. Your future self will thank you.</p>
+    </div>
+
+    <h2>Step 3 — Secret scanning</h2>
+    <p>
+      Accidentally committing API keys, database passwords, or private keys to GitHub is embarrassingly
+      common — and catastrophically dangerous. I've seen it happen to senior developers.
+      <strong>Prevention is the only cure.</strong>
+    </p>
+
+    <h3>Two layers of protection</h3>
+    <ul>
+      <li><strong>Pre-commit hooks with Gitleaks:</strong> Scans every commit locally before it hits the remote. If a secret is detected, the commit is blocked.</li>
+      <li><strong>GitHub Secret Scanning:</strong> Enable it at the repo level — GitHub will alert you if secrets appear in commits, even in private repos.</li>
+    </ul>
+
+    <pre><code># .gitleaks.toml — customise what counts as a secret
+[allowlist]
+  paths = [
+    '''.gitleaks.toml''',
+    '''tests/fixtures/'''
+  ]
+
+# Run in CI
+- name: Gitleaks secret scan
+  uses: gitleaks/gitleaks-action@v2
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}</code></pre>
+
+    <h2>Step 4 — Container image scanning</h2>
+    <p>
+      If you're using Docker (and you should be), your container images need scanning too.
+      A perfectly secure Node.js app running on a base image with 200 CVEs is still a vulnerable app.
+    </p>
+
+    <pre><code>- name: Build Docker image
+  run: docker build -t myapp:${{ github.sha }} .
+
+- name: Scan image with Trivy
+  uses: aquasecurity/trivy-action@master
+  with:
+    image-ref: myapp:${{ github.sha }}
+    format: table
+    exit-code: 1          # Fail CI on HIGH or CRITICAL
+    severity: HIGH,CRITICAL</code></pre>
+
+    <h2>Step 5 — Runtime monitoring in production</h2>
+    <p>
+      Even with all of the above, threats exist at runtime. Set up monitoring that alerts you to
+      anomalous behaviour — unexpected API call volumes, new geographic origins, unusual database
+      query patterns.
+    </p>
+    <ul>
+      <li><strong>Datadog / New Relic:</strong> APM tools with security monitoring add-ons.</li>
+      <li><strong>Falco:</strong> Open-source runtime security for Kubernetes workloads.</li>
+      <li><strong>AWS GuardDuty:</strong> Intelligent threat detection for AWS-hosted apps.</li>
+    </ul>
+
+    <h2>Making it stick: the culture piece</h2>
+    <p>
+      Tools are only half the story. DevSecOps fails when security is still treated as
+      "the security team's problem." What actually makes it work:
+    </p>
+    <ul>
+      <li><strong>Developers own vulnerabilities they introduce.</strong> When the SAST scanner blocks your PR, you fix it — not a separate security team.</li>
+      <li><strong>Security findings go to Slack, not a ticket queue.</strong> Visibility matters. If developers never see security alerts, they don't feel the urgency.</li>
+      <li><strong>Threat modelling at design time.</strong> Before writing a single line of a new feature, ask: what could go wrong here? What data does this touch?</li>
+      <li><strong>Regular tabletop exercises.</strong> Walk through breach scenarios as a team. What would you do if your DB credentials were leaked right now?</li>
+    </ul>
+
+    <div class="callout green">
+      <div class="callout-title">✅ The payoff</div>
+      <p>After implementing this full pipeline on a client project, we went from discovering 12+
+      critical vulnerabilities per release cycle to zero — and our deployment frequency
+      actually <em>increased</em> because security stopped being a release blocker.</p>
+    </div>
+
+    <hr class="post-divider" />
+
+    <p>
+      Security doesn't have to be the thing that slows your team down. Built right, it becomes
+      invisible background noise — catching issues quietly, automatically, before they ever become
+      incidents. That's the DevSecOps promise, and in my experience, it delivers.
+    </p>
+    <p>
+      Questions about implementing any of this in your own pipeline?
+      <a href="../contact.html">Get in touch</a> — I'm happy to help.
+    </p>
+
+    <div class="post-author">
+      <div class="author-avatar">👨‍💻</div>
+      <div>
+        <div class="author-name">Geoffrey Kibet Rono (Geff)</div>
+        <div class="author-role">Full-Stack Developer · Nairobi, Kenya</div>
+        <div class="author-bio">Building scalable web apps across the full stack. Writing about the tools, patterns, and hard lessons from real production systems.</div>
+      </div>
+    </div>
+
+    <nav class="post-nav" aria-label="Post navigation">
+      <a href="post2.html" class="post-nav-item">
+        <span class="post-nav-dir">← Previous</span>
+        <span class="post-nav-title">Artificial Intelligence in Modern Web Development</span>
+      </a>
+      <a href="post1.html" class="post-nav-item next">
+        <span class="post-nav-dir">Next →</span>
+        <span class="post-nav-title">Why I Migrated from REST to tRPC</span>
+      </a>
+    </nav>
+
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo">Geff<span class="dot">.</span>dev</a>
+        <p>Full-Stack Developer crafting clean, performant web experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html">Projects</a></li><li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:kibet.ronoh@outlook.com">kibet.ronoh@outlook.com</a></li>
+          <li><a href="tel:+254796311695">+254 796 311 695</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Geoffrey Kibet Rono. Built with ☕ & clean code.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

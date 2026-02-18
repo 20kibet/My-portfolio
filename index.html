@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geoffrey Kibet Rono — Full-Stack Developer</title>
+  <meta name="description" content="Geoffrey Kibet Rono (Geff) — Full-Stack Developer crafting beautiful, scalable web applications." />
+  <meta property="og:title" content="Geoffrey Kibet Rono (Geff) — Full-Stack Developer" />
+  <meta property="og:description" content="Full-Stack Developer crafting beautiful, scalable web applications." />
+  <meta property="og:image"       content="images/og-image.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Geff<span class="dot">.</span>dev</a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="icon">🌙</span>
+        <span class="label">Dark</span>
+      </button>
+      <a href="assets/resume.pdf" class="btn btn-primary" download data-resume>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<nav class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+
+
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero" aria-label="Introduction">
+  <div class="hero-bg-blob" aria-hidden="true"></div>
+  <div class="hero-bg-blob" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            Available for freelance &amp; full-time
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          Building the<br/>
+          <em>web of</em><br/>
+          tomorrow.
+        </h1>
+
+        <p class="hero-desc">
+          Hi, I'm <strong>Geff</strong> (Geoffrey Kibet Rono) — a Full-Stack Developer who turns complex ideas
+          into clean, performant digital experiences. I work across the entire stack,
+          from pixel-perfect UIs to robust back-end systems.
+        </p>
+
+        <p class="hero-desc" style="margin-top: -0.75rem; font-size: 1rem;">
+          I'm a <span id="typewriter" style="color: var(--accent); font-weight: 600;"></span><span class="cursor-blink" aria-hidden="true"></span>
+        </p>
+
+        <div class="hero-ctas">
+          <a href="projects.html" class="btn btn-primary">
+            View My Work
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="contact.html" class="btn btn-outline">Let's Talk</a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="hero-meta-num"><span data-count="4" data-suffix="+">4+</span></div>
+            <div class="hero-meta-label">Years Experience</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-num"><span data-count="32" data-suffix="+">32+</span></div>
+            <div class="hero-meta-label">Projects Delivered</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-num"><span data-count="18" data-suffix="+">18+</span></div>
+            <div class="hero-meta-label">Happy Clients</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="code-window">
+          <div class="code-window-bar">
+            <div class="code-dots">
+              <div class="code-dot red"></div>
+              <div class="code-dot yellow"></div>
+              <div class="code-dot green"></div>
+            </div>
+            <span class="code-filename">geff.tsx</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="ln">1</span><span><span class="kw">const</span> <span class="fn">Developer</span> = () <span class="kw">=&gt;</span> ({</span></div>
+            <div class="code-line"><span class="ln">2</span><span>&nbsp;&nbsp;name: <span class="str">"Geff"</span>,</span></div>
+            <div class="code-line"><span class="ln">3</span><span>&nbsp;&nbsp;alias: <span class="str">"Geoffrey Kibet Rono"</span>,</span></div>
+            <div class="code-line"><span class="ln">4</span><span>&nbsp;&nbsp;stack: [<span class="str">"React"</span>, <span class="str">"Node"</span>,</span></div>
+            <div class="code-line"><span class="ln">5</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"TypeScript"</span>, <span class="str">"Go"</span>],</span></div>
+            <div class="code-line"><span class="ln">6</span><span>&nbsp;&nbsp;passion: <span class="str">"clean code"</span>,</span></div>
+            <div class="code-line"><span class="ln">7</span><span>&nbsp;&nbsp;coffee: <span class="num">Infinity</span>,</span></div>
+            <div class="code-line"><span class="ln">8</span><span>&nbsp;&nbsp;<span class="fn">hire</span>: () <span class="kw">=&gt;</span> <span class="str">"yes, please!"</span></span></div>
+            <div class="code-line"><span class="ln">9</span><span>});</span></div>
+            <div class="code-line"><span class="ln">10</span><span class="cm">// Ready to build something great?</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURED PROJECTS ===================== -->
+<section class="section" id="projects" aria-labelledby="fp-heading">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label reveal">Featured Work</div>
+      <h2 class="section-title reveal reveal-delay-1" id="fp-heading">
+        Things I've <em style="font-style:italic; color:var(--accent);">built</em>
+      </h2>
+      <p class="section-desc reveal reveal-delay-2">
+        A selection of projects that showcase my range across frontend, backend, and everything in between.
+      </p>
+    </header>
+
+    <div class="fp-grid stagger-parent">
+      <!-- Project 1 -->
+      <article class="fp-card reveal">
+        <div class="fp-card-img"><img src="images/projects/shop-flow.jpeg" alt="ShopFlow E-Commerce Platform" loading="lazy" /></div>
+        <div class="fp-card-body">
+          <div class="fp-card-tag"><span class="tag tag-accent">Full-Stack</span></div>
+          <h3>ShopFlow — E-Commerce Platform</h3>
+          <p>A full-featured e-commerce solution with real-time inventory, Stripe payments, and an admin dashboard built with Next.js and PostgreSQL.</p>
+          <div class="fp-card-links">
+            <a href="#" class="fp-card-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="#" class="fp-card-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="fp-card reveal reveal-delay-1">
+        <div class="fp-card-img"><img src="images/projects/data-pulse.jpeg" alt="DataPulse Analytics API" loading="lazy" /></div>
+        <div class="fp-card-body">
+          <div class="fp-card-tag"><span class="tag">Backend</span></div>
+          <h3>DataPulse — Analytics API</h3>
+          <p>High-performance REST + GraphQL API serving real-time analytics dashboards for 10K+ concurrent users, built with Go and Redis.</p>
+          <div class="fp-card-links">
+            <a href="#" class="fp-card-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="#" class="fp-card-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="fp-card reveal reveal-delay-2">
+        <div class="fp-card-img"><img src="images/projects/chat-nest.jpeg" alt="ChatNest Messaging App" loading="lazy" /></div>
+        <div class="fp-card-body">
+          <div class="fp-card-tag"><span class="tag">Frontend</span></div>
+          <h3>ChatNest — Real-time Messaging</h3>
+          <p>Slack-like messaging app with WebSocket rooms, file sharing, and end-to-end encryption. React frontend, Socket.io + Node backend.</p>
+          <div class="fp-card-links">
+            <a href="#" class="fp-card-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="#" class="fp-card-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="fp-section-footer reveal">
+      <a href="projects.html" class="btn btn-outline">
+        View All Projects
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section class="section section-alt" id="skills" aria-labelledby="skills-heading">
+  <div class="container">
+    <div class="about-teaser">
+      <div>
+        <div class="section-label reveal">Tech Stack</div>
+        <h2 class="section-title reveal reveal-delay-1" id="skills-heading">What I work with</h2>
+        <p class="section-desc reveal reveal-delay-2">
+          I'm comfortable across the full stack and love picking the right tool for the job.
+        </p>
+
+        <div class="skills-wrap" style="margin-top: 2.5rem;">
+          <div class="skill-category reveal reveal-delay-1">
+            <h3>Frontend</h3>
+            <div class="skills-pills">
+              <div class="skill-pill"><span class="skill-pill-icon">⚛️</span> React</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🔷</span> TypeScript</div>
+              <div class="skill-pill"><span class="skill-pill-icon">▲</span> Next.js</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🎨</span> Tailwind CSS</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🌿</span> Vue.js</div>
+            </div>
+          </div>
+          <div class="skill-category reveal reveal-delay-2">
+            <h3>Backend</h3>
+            <div class="skills-pills">
+              <div class="skill-pill"><span class="skill-pill-icon">🟢</span> Node.js</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🐍</span> Python</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🔵</span> Go</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🛡️</span> Express</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🚀</span> FastAPI</div>
+            </div>
+          </div>
+          <div class="skill-category reveal reveal-delay-3">
+            <h3>Data & Cloud</h3>
+            <div class="skills-pills">
+              <div class="skill-pill"><span class="skill-pill-icon">🐘</span> PostgreSQL</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🍃</span> MongoDB</div>
+              <div class="skill-pill"><span class="skill-pill-icon">⚡</span> Redis</div>
+              <div class="skill-pill"><span class="skill-pill-icon">☁️</span> AWS</div>
+              <div class="skill-pill"><span class="skill-pill-icon">🐳</span> Docker</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About teaser -->
+      <div class="about-text reveal">
+        <div class="section-label">About Me</div>
+        <p>
+          I'm <strong>Geff</strong>, a full-stack developer with experience building
+          everything from lean startups to production-scale platforms. I care deeply about
+          code quality, developer experience, and the humans who use what I build.
+        </p>
+        <p>
+          When I'm not coding, you'll find me contributing to open-source,
+          writing technical articles, or exploring new frameworks.
+        </p>
+        <p>
+          Based in <strong>Nairobi, Kenya</strong> — open to remote opportunities worldwide.
+        </p>
+        <div class="about-text-ctas">
+          <a href="about.html" class="btn btn-outline">Read More About Me</a>
+          <a href="contact.html" class="btn btn-ghost">
+            Let's Connect
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BLOG PREVIEW ===================== -->
+<section class="section" id="blog" aria-labelledby="blog-heading">
+  <div class="container">
+    <header class="section-header">
+      <div class="section-label reveal">Writing</div>
+      <h2 class="section-title reveal reveal-delay-1" id="blog-heading">Latest Articles</h2>
+      <p class="section-desc reveal reveal-delay-2">Thoughts on development, architecture, and the craft of building software.</p>
+    </header>
+
+    <div class="blog-grid stagger-parent">
+      <article class="blog-card">
+        <div class="blog-card-meta">
+          <span class="tag tag-accent">Architecture</span>
+          <span class="blog-read-time">8 min read</span>
+        </div>
+        <h3><a href="blog/post1.html">Why I Migrated from REST to tRPC — and What I Learned</a></h3>
+        <p>Type-safe APIs are changing how I think about full-stack development. Here's my experience migrating a production app.</p>
+        <span class="blog-date">Feb 10, 2025</span>
+        <a href="blog/post1.html" class="blog-card-link">
+          Read Article
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-meta">
+          <span class="tag">Performance</span>
+          <span class="blog-read-time">6 min read</span>
+        </div>
+        <h3><a href="blog/post2.html">React Server Components: A Practical Guide for 2025</a></h3>
+        <p>RSC changes everything about how we fetch data. Here's a practical breakdown with real-world patterns and pitfalls to avoid.</p>
+        <span class="blog-date">Jan 28, 2025</span>
+        <a href="blog/post2.html" class="blog-card-link">
+          Read Article
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-meta">
+          <span class="tag">DevOps</span>
+          <span class="blog-read-time">5 min read</span>
+        </div>
+        <h3><a href="blog/post3.html">Zero-Downtime Deployments with Docker and GitHub Actions</a></h3>
+        <p>A step-by-step guide to building a CI/CD pipeline that keeps your app live during every single deployment.</p>
+        <span class="blog-date">Jan 14, 2025</span>
+        <a href="blog/post3.html" class="blog-card-link">
+          Read Article
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+    </div>
+
+    <div class="fp-section-footer reveal" style="margin-top: 3rem;">
+      <a href="blog.html" class="btn btn-outline">All Articles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BAND ===================== -->
+<section class="cta-band" aria-label="Call to action">
+  <div class="container cta-band-inner">
+    <h2>Ready to build something amazing?</h2>
+    <p>I'm available for freelance projects and full-time roles. Let's make it happen.</p>
+    <a href="contact.html" class="btn btn-primary">
+      Get In Touch
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+        <p>Full-Stack Developer crafting clean, performant web experiences. Based in Nairobi, Kenya, available worldwide.</p>
+        <div class="social-links" style="margin-top: 1.5rem;">
+          <a href="#" class="social-link" aria-label="GitHub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/kibet-ronoh-5794643aa" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:kibet.ronoh@outlook.com">kibet.ronoh@outlook.com</a></li>
+          <li><a href="assets/resume.pdf" download data-resume>Download Resume</a></li>
+          <li><a href="#">Schedule a Call</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Geoffrey Kibet Rono. Built with ☕ &amp; clean code.</p>
+      <p>Designed &amp; developed by <a href="#">Geoffrey Kibet Rono</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

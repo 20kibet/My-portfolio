@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why I Migrated from REST to tRPC — Geff | Blog</title>
+  <meta name="description" content="Type-safe APIs are changing full-stack development. Here's my experience migrating a production app with 50+ endpoints to tRPC." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <style>
+    /* ===== POST LAYOUT ===== */
+    .post-hero {
+      padding: 9rem 0 0;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+    .post-hero-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+    .post-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-family: var(--font-mono);
+    }
+    .post-breadcrumb a { transition: color var(--t); }
+    .post-breadcrumb a:hover { color: var(--accent); }
+    .post-breadcrumb span { color: var(--border-2); }
+
+    .post-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .post-read-time {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .post-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    h1.post-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: var(--text-solid);
+      margin-bottom: 1.25rem;
+    }
+    .post-subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    /* Cover image */
+    .post-cover {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .post-cover img {
+      width: 100%;
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+    .post-cover-placeholder {
+      width: 100%;
+      height: 380px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+    }
+
+    /* Article body */
+    .post-body-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .post-content h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-solid);
+      margin: 3rem 0 1rem;
+      line-height: 1.2;
+    }
+    .post-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-solid);
+      margin: 2rem 0 0.75rem;
+    }
+    .post-content p {
+      color: var(--muted);
+      line-height: 1.95;
+      margin-bottom: 1.25rem;
+      font-size: 1.05rem;
+    }
+    .post-content p strong { color: var(--text-solid); font-weight: 600; }
+    .post-content ul, .post-content ol {
+      margin: 1rem 0 1.5rem 1.5rem;
+      color: var(--muted);
+    }
+    .post-content li {
+      margin-bottom: 0.6rem;
+      line-height: 1.8;
+      font-size: 1.02rem;
+    }
+    .post-content li strong { color: var(--text-solid); }
+    .post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Code blocks */
+    .post-content pre {
+      background: var(--text-solid);
+      color: #e8e4d9;
+      border-radius: var(--r-md);
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 1.75rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.8;
+      box-shadow: var(--shadow-lg);
+    }
+    [data-theme="dark"] .post-content pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .post-content code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15em 0.45em;
+      color: var(--accent);
+    }
+    .post-content pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    /* Callout boxes */
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: rgba(212, 98, 42, 0.06);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .callout p { margin: 0; font-size: 0.98rem; }
+    .callout-title {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .callout.info {
+      border-color: var(--accent-2);
+      background: rgba(37, 99, 196, 0.06);
+    }
+    .callout.info .callout-title { color: var(--accent-2); }
+
+    /* Divider */
+    .post-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* Author bio */
+    .post-author {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.75rem;
+      margin-top: 3rem;
+    }
+    .author-avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-name { font-weight: 700; color: var(--text-solid); margin-bottom: 0.2rem; }
+    .author-role { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .author-bio  { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+    /* Post navigation */
+    .post-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .post-nav-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 1.25rem;
+      transition: all var(--t);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .post-nav-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .post-nav-item.next { text-align: right; }
+    .post-nav-dir {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .post-nav-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-solid);
+      line-height: 1.4;
+      transition: color var(--t);
+    }
+    .post-nav-item:hover .post-nav-title { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .post-nav { grid-template-columns: 1fr; }
+      .post-nav-item.next { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../projects.html">Projects</a></li>
+      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="icon">🌙</span><span class="label">Dark</span></button>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="../index.html">Home</a><a href="../about.html">About</a>
+  <a href="../projects.html">Projects</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</nav>
+
+<!-- POST HERO -->
+<header class="post-hero">
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="../blog.html">Blog</a>
+      <span>/</span>
+      <span>Architecture</span>
+    </div>
+    <div class="post-meta-row">
+      <span class="tag tag-accent">Architecture</span>
+      <span class="post-read-time">8 min read</span>
+      <span class="post-date">February 10, 2025</span>
+    </div>
+    <h1 class="post-title">Why I Migrated from REST to tRPC — and What I Learned</h1>
+    <p class="post-subtitle">
+      Type-safe APIs are changing how I think about full-stack development. After migrating
+      a production app with 50+ endpoints, here's everything I learned about the tradeoffs,
+      the wins, and the gotchas nobody talks about.
+    </p>
+  </div>
+</header>
+
+<!-- COVER IMAGE -->
+<div class="post-cover">
+    <img src="../images/projects/post1.jpeg" alt="Abstract illustration of API connections and data flow" />
+</div>
+
+<!-- ARTICLE BODY -->
+<main class="post-body-wrap">
+  <article class="post-content">
+
+    <p>
+      I'll be honest — when I first heard about tRPC, I rolled my eyes. <em>"Another abstraction layer?"</em>
+      I thought. I had REST APIs that worked fine. OpenAPI docs. Postman collections. The whole nine yards.
+      But after spending a weekend watching my team debug a mismatch between a frontend <code>user.name</code>
+      and a backend <code>user.fullName</code> — for the third time — I decided to give it a proper look.
+    </p>
+
+    <p>
+      Six months later, I've fully migrated ShopFlow's API to tRPC. Here's the honest breakdown.
+    </p>
+
+    <h2>What is tRPC, really?</h2>
+    <p>
+      tRPC lets you build <strong>end-to-end type-safe APIs</strong> without schemas or code generation.
+      If you're using TypeScript on both frontend and backend (Next.js, for example), tRPC shares types
+      directly — the moment you change a backend return type, your frontend immediately shows a red squiggle
+      where you broke something. No runtime surprises.
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">💡 Key insight</div>
+      <p>tRPC doesn't replace HTTP — it's a layer on top of it. Your API still runs over HTTP, but the
+      developer experience feels like calling local functions.</p>
+    </div>
+
+    <h2>The migration: what the numbers looked like</h2>
+    <p>
+      ShopFlow had <strong>54 REST endpoints</strong> across 8 routers: auth, products, orders, payments,
+      inventory, users, reviews, and admin. The migration took about 3 weeks across two developers,
+      done incrementally — we ran REST and tRPC side by side until we were confident.
+    </p>
+
+    <h3>Before: a typical REST endpoint</h3>
+    <pre><code>// Express REST endpoint
+router.get('/products/:id', authenticate, async (req, res) => {
+  try {
+    const product = await db.product.findUnique({
+      where: { id: req.params.id }
+    });
+    if (!product) return res.status(404).json({ error: 'Not found' });
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});</code></pre>
+
+    <h3>After: the same endpoint in tRPC</h3>
+    <pre><code>// tRPC procedure
+export const productRouter = router({
+  getById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input }) => {
+      const product = await db.product.findUnique({
+        where: { id: input.id }
+      });
+      if (!product) throw new TRPCError({ code: 'NOT_FOUND' });
+      return product;
+    }),
+});</code></pre>
+
+    <p>
+      Cleaner. The input is validated with <strong>Zod</strong> automatically.
+      Errors are typed. And the return type? Inferred straight from Prisma — no manual typing needed.
+    </p>
+
+    <h2>The wins — what actually got better</h2>
+
+    <ul>
+      <li><strong>Zero type drift:</strong> The frontend always knew exactly what the backend returned. We eliminated an entire category of bug.</li>
+      <li><strong>No more Postman:</strong> We use the tRPC panel for quick testing. The built-in type inference is a live API document.</li>
+      <li><strong>Refactoring became painless:</strong> Rename a field on the backend and TypeScript screams at every frontend usage. Fix, done.</li>
+      <li><strong>Less boilerplate:</strong> Validation, error handling, and auth middleware are all composable via tRPC middleware — no duplication.</li>
+      <li><strong>Smaller bundle:</strong> No Axios, no OpenAPI client. Just the tRPC client, which is tiny.</li>
+    </ul>
+
+    <h2>The gotchas — what nobody warned me about</h2>
+
+    <div class="callout info">
+      <div class="callout-title">⚠️ Watch out for these</div>
+      <p>These aren't dealbreakers, but they cost us time. Learn from it.</p>
+    </div>
+
+    <ul>
+      <li><strong>Non-TypeScript consumers are locked out.</strong> If a mobile app or third-party service needs to call your API, they can't use tRPC natively. We kept a small REST layer for our mobile app.</li>
+      <li><strong>File uploads need special handling.</strong> tRPC doesn't natively support multipart forms. We handled uploads via a separate Express endpoint and referenced the URL in tRPC procedures.</li>
+      <li><strong>Monorepo setup is essential.</strong> Sharing types between frontend and backend requires a shared package. If your project isn't a monorepo, set that up first.</li>
+      <li><strong>Error handling is different.</strong> You need to learn <code>TRPCError</code> and its codes. The mapping from HTTP status codes isn't 1:1 in your mental model initially.</li>
+    </ul>
+
+    <h2>Should you migrate?</h2>
+    <p>
+      If your stack is <strong>TypeScript + TypeScript</strong> (Next.js, Remix, or a Node backend),
+      tRPC is worth every hour of migration time. The productivity gain from eliminating type drift
+      alone paid for itself within a month.
+    </p>
+    <p>
+      If you have non-TypeScript consumers, a public API, or a team that isn't fully on TypeScript —
+      stick with REST or consider GraphQL with codegen instead.
+    </p>
+
+    <hr class="post-divider" />
+
+    <p>
+      The best engineering decisions aren't about picking the shiniest tool — they're about picking
+      the right tool for your context. For us, tRPC was the right call. Your mileage may vary,
+      and that's completely fine.
+    </p>
+    <p>
+      Have questions or war stories from your own tRPC migration? Reach out on
+      <a href="https://www.linkedin.com/in/kibet-ronoh-5794643aa" target="_blank">LinkedIn</a> —
+      I'd love to hear how it went.
+    </p>
+
+    <!-- Author bio -->
+    <div class="post-author">
+      <div class="author-avatar">👨‍💻</div>
+      <div>
+        <div class="author-name">Geoffrey Kibet Rono (Geff)</div>
+        <div class="author-role">Full-Stack Developer · Nairobi, Kenya</div>
+        <div class="author-bio">Building scalable web apps across the full stack. Writing about the tools, patterns, and hard lessons from real production systems.</div>
+      </div>
+    </div>
+
+    <!-- Post navigation -->
+    <nav class="post-nav" aria-label="Post navigation">
+      <a href="post3.html" class="post-nav-item">
+        <span class="post-nav-dir">← Previous</span>
+        <span class="post-nav-title">DevSecOps: Building Security Into Your Dev Pipeline</span>
+      </a>
+      <a href="post2.html" class="post-nav-item next">
+        <span class="post-nav-dir">Next →</span>
+        <span class="post-nav-title">Artificial Intelligence in Modern Web Development</span>
+      </a>
+    </nav>
+
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+        <p>Full-Stack Developer crafting clean, performant web experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html">Projects</a></li><li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:kibet.ronoh@outlook.com">kibet.ronoh@outlook.com</a></li>
+          <li><a href="tel:+254796311695">+254 796 311 695</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Geoffrey Kibet Rono. Built with ☕ & clean code.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

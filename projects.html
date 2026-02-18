@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Geoffrey Kibet Rono</title>
+  <meta name="description" content="A gallery of full-stack projects spanning web apps, APIs, and developer tools." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<nav class="nav" role="navigation">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="icon">🌙</span><span class="label">Dark</span></button>
+      <a href="assets/resume.pdf" class="btn btn-primary" download data-resume>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+      <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="projects.html">Projects</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <div class="section-label" style="justify-content:center;">Portfolio</div>
+    <h1 class="section-title">My Projects</h1>
+    <p class="section-desc">
+      From side projects to production apps — here's what I've been building.
+      Each project is a story of a problem solved.
+    </p>
+  </div>
+</header>
+
+<!-- PROJECTS -->
+<section class="section">
+  <div class="container">
+
+    <!-- Filter Bar -->
+    <div class="filter-bar reveal" role="group" aria-label="Filter projects">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+      <button class="filter-btn" data-filter="frontend">Frontend</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
+      <button class="filter-btn" data-filter="mobile">Mobile</button>
+      <button class="filter-btn" data-filter="opensource">Open Source</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- Featured -->
+      <article class="project-card featured" data-category="fullstack">
+        <div class="pc-img">
+          <img src="images/projects/shop-flow.jpeg" alt="ShopFlow E-Commerce Platform" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />
+          <div class="pc-img-overlay">
+            <a href="#" class="btn btn-primary" style="background:#fff;color:#111;">Live Demo</a>
+            <a href="#" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff;">GitHub</a>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-tags">
+            <span class="tag tag-accent">Featured</span>
+            <span class="tag">Full-Stack</span>
+          </div>
+          <h2 class="pc-title">ShopFlow — E-Commerce Platform</h2>
+          <p class="pc-desc">
+            A production-ready e-commerce platform with multi-vendor support, real-time inventory tracking,
+            Stripe Connect payments, order management, and a fully custom admin dashboard.
+            Handles 50K+ monthly transactions.
+          </p>
+          <div class="pc-stack">
+            <span class="pc-stack-item">Next.js 14</span>
+            <span class="pc-stack-item">TypeScript</span>
+            <span class="pc-stack-item">PostgreSQL</span>
+            <span class="pc-stack-item">Stripe</span>
+            <span class="pc-stack-item">Redis</span>
+            <span class="pc-stack-item">AWS S3</span>
+          </div>
+          <div class="pc-links">
+            <a href="#" class="pc-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="#" class="pc-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              Source Code
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="project-card" data-category="backend">
+        <div class="pc-img"><img src="images/projects/data-pulse.jpeg" alt="DataPulse Analytics API" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="tag">Backend</span><span class="tag">API</span></div>
+          <h3 class="pc-title">DataPulse Analytics API</h3>
+          <p class="pc-desc">High-performance REST & GraphQL API serving real-time dashboards. 10K+ concurrent users, sub-50ms p99 latency.</p>
+          <div class="pc-stack">
+            <span class="pc-stack-item">Go</span>
+            <span class="pc-stack-item">GraphQL</span>
+            <span class="pc-stack-item">Redis</span>
+            <span class="pc-stack-item">Docker</span>
+          </div>
+          <div class="pc-links">
+            <a href="#" class="pc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live</a>
+            <a href="#" class="pc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="project-card" data-category="frontend">
+        <div class="pc-img"><img src="images/projects/chat-nest.jpeg" alt="ChatNest Messaging App" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="tag">Frontend</span><span class="tag">Realtime</span></div>
+          <h3 class="pc-title">ChatNest — Messaging App</h3>
+          <p class="pc-desc">Slack-like messaging with WebSocket rooms, file sharing, threads, and E2E encryption. 500+ active daily users.</p>
+          <div class="pc-stack">
+            <span class="pc-stack-item">React</span>
+            <span class="pc-stack-item">Socket.io</span>
+            <span class="pc-stack-item">Node.js</span>
+            <span class="pc-stack-item">MongoDB</span>
+          </div>
+          <div class="pc-links">
+            <a href="#" class="pc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live</a>
+            <a href="#" class="pc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="project-card" data-category="fullstack opensource">
+        <div class="pc-img"><img src="images/projects/taskflow.jpeg" alt="TaskFlow Project Manager" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="tag">Open Source</span><span class="tag">Full-Stack</span></div>
+          <h3 class="pc-title">TaskFlow — Project Manager</h3>
+          <p class="pc-desc">Open-source Jira alternative with Kanban boards, sprints, time tracking, and GitHub integration.</p>
+          <div class="pc-stack">
+            <span class="pc-stack-item">Vue.js</span>
+            <span class="pc-stack-item">FastAPI</span>
+            <span class="pc-stack-item">PostgreSQL</span>
+          </div>
+          <div class="pc-links">
+            <a href="#" class="pc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live</a>
+            <a href="#" class="pc-link">⭐ 1.2k GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="project-card" data-category="mobile">
+        <div class="pc-img"><img src="images/projects/fit-track.jpeg" alt="FitTrack Fitness App" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="tag">Mobile</span><span class="tag">React Native</span></div>
+          <h3 class="pc-title">FitTrack — Fitness App</h3>
+          <p class="pc-desc">Cross-platform fitness tracker with AI workout recommendations, progress charts, and social challenges.</p>
+          <div class="pc-stack">
+            <span class="pc-stack-item">React Native</span>
+            <span class="pc-stack-item">Expo</span>
+            <span class="pc-stack-item">Firebase</span>
+          </div>
+          <div class="pc-links">
+            <a href="#" class="pc-link">App Store</a>
+            <a href="#" class="pc-link">Play Store</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="project-card" data-category="backend opensource">
+        <div class="pc-img"><img src="images/projects/auth-library.jpeg" alt="AuthKit Auth Library" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="pc-body">
+          <div class="pc-tags"><span class="tag">Open Source</span><span class="tag">Backend</span></div>
+          <h3 class="pc-title">AuthKit — Auth Library</h3>
+          <p class="pc-desc">Plug-and-play authentication library for Node.js supporting OAuth2, magic links, and passkeys. 800+ GitHub stars.</p>
+          <div class="pc-stack">
+            <span class="pc-stack-item">Node.js</span>
+            <span class="pc-stack-item">TypeScript</span>
+            <span class="pc-stack-item">JWT</span>
+          </div>
+          <div class="pc-links">
+            <a href="#" class="pc-link">npm</a>
+            <a href="#" class="pc-link">⭐ 843 GitHub</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container cta-band-inner">
+    <h2>Have a project in mind?</h2>
+    <p>Let's discuss it. I love a good challenge.</p>
+    <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">geff<span class="dot">.</span>dev</a>
+        <p>Full-Stack Developer crafting clean, performant web experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:kibet.ronoh@outlook.com">kibet.ronoh@outlook.com</a></li>
+          <li><a href="assets/resume.pdf" download>Download Resume</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Geoffrey Kibet Rono. Built with ☕ &amp; clean code.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>
