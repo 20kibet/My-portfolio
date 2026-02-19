@@ -19,6 +19,25 @@
   .hero-ctas    { justify-content: center; }
   .hero-visual  { display: none; }
 
+  /* Show code card on phone */
+.hero-visual {
+  display: block;
+  margin-top: 1rem;
+}
+
+.code-window {
+  width: 100%;
+  max-width: 100%;
+}
+
+.code-body {
+  padding: 1rem;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+
   /* About */
   .about-grid {
     grid-template-columns: 1fr;
