@@ -1,9 +1,3 @@
-/* ============================================================
-   main.js — Global JavaScript
-   Handles: nav scroll, theme toggle, cursor, mobile menu, toast
-   ============================================================ */
-
-/* ===== THEME ===== */
 const ThemeManager = (() => {
   const KEY = 'portfolio-theme';
   let current = localStorage.getItem(KEY) || 'light';
@@ -18,6 +12,7 @@ const ThemeManager = (() => {
       btn.querySelector('.label').textContent = theme === 'dark' ? 'Light' : 'Dark';
     });
   };
+  
 
   const toggle = () => apply(current === 'light' ? 'dark' : 'light');
   const init   = () => apply(current);

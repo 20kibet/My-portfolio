@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target);
       });
     }, { threshold: 0.1 });
-    observer.observe(parent);
+    observer.observe(parent)
+
   });
 
   /* ===== SKILL PILLS entrance ===== */
