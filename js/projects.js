@@ -1,6 +1,3 @@
-/* ============================================================
-   projects.js — Project filtering & interactions
-   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 

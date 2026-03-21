@@ -1,7 +1,3 @@
-/* ============================================================
-   animations.js — Advanced scroll animations
-   ============================================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ===== PARALLAX on hero blobs ===== */
