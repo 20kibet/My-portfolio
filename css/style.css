@@ -709,3 +709,330 @@ h1, h2, h3, .section-heading, .hero-title, .cta-heading {
   padding-top: 1.5rem;
   border-top: 1px solid var(--border-color);
 }
+
+/* ============================================ */
+/* MOBILE & RESPONSIVE FIXES - ADD TO style.css */
+/* ============================================ */
+
+/* Fix for all containers on mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Fix hero section on mobile */
+  .hero {
+    min-height: auto !important;
+    padding: 2rem 0 !important;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-sub {
+    font-size: 1rem !important;
+  }
+  
+  .hero-ctas {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  .hero-ctas .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  /* Fix stats bar */
+  .stats-bar {
+    padding: 1rem 0 !important;
+  }
+  
+  .stats-inner {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 1.5rem !important;
+  }
+  
+  .stat {
+    text-align: center !important;
+    min-width: 120px !important;
+  }
+  
+  .stat-rule {
+    display: none !important;
+  }
+  
+  /* Fix feature cards */
+  .features {
+    padding: 3rem 0 !important;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  .feat-card {
+    padding: 1.5rem !important;
+  }
+  
+  .feat-card h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  /* Fix projects section */
+  .projects {
+    padding: 3rem 0 !important;
+  }
+  
+  .projects-header {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .proj-card {
+    margin-bottom: 0 !important;
+  }
+  
+  .proj-body {
+    padding: 1.2rem !important;
+  }
+  
+  .proj-body h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  /* Fix skills section */
+  .skills {
+    padding: 3rem 0 !important;
+  }
+  
+  .section-heading {
+    font-size: 1.8rem !important;
+  }
+  
+  .skill-pills {
+    justify-content: center !important;
+  }
+  
+  .pill {
+    font-size: 0.8rem !important;
+    padding: 0.4rem 1rem !important;
+  }
+  
+  /* Fix footer */
+  .footer {
+    padding: 2rem 0 1rem !important;
+  }
+  
+  .footer-inner {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
+  }
+  
+  .footer-nav {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  .footer-contact {
+    align-items: center !important;
+  }
+  
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+/* Fix for small phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .section-eyebrow {
+    font-size: 0.65rem !important;
+  }
+  
+  .section-heading {
+    font-size: 1.5rem !important;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .hero-available {
+    font-size: 0.7rem !important;
+  }
+  
+  .stat strong {
+    font-size: 1.5rem !important;
+  }
+  
+  .stat span {
+    font-size: 0.7rem !important;
+  }
+  
+  .feat-card p {
+    font-size: 0.85rem !important;
+  }
+  
+  .proj-link {
+    font-size: 0.75rem !important;
+  }
+  
+  .skill-group-label {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Fix navigation on mobile */
+@media (max-width: 900px) {
+  .nav-inner {
+    padding: 0.6rem 1rem !important;
+  }
+  
+  .nav-links {
+    display: none !important;
+  }
+  
+  .nav-phone {
+    display: none !important;
+  }
+  
+  .nav-hamburger {
+    display: block !important;
+  }
+  
+  .logo-wordmark {
+    font-size: 1.5rem !important;
+  }
+  
+  .logo-sq {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.4rem !important;
+  }
+}
+
+/* Fix for about page on mobile */
+@media (max-width: 768px) {
+  .about-contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding: 2rem 0 !important;
+  }
+  
+  .sticky-photo {
+    position: static !important;
+    max-width: 100% !important;
+  }
+  
+  .profile-img {
+    max-width: 250px !important;
+    margin: 0 auto 1.5rem !important;
+  }
+  
+  .contact-card {
+    position: static !important;
+    padding: 1.5rem !important;
+  }
+  
+  .exp-item {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* Fix for projects/blog page on mobile */
+@media (max-width: 768px) {
+  .projects-blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding: 2rem 0 !important;
+  }
+  
+  .project-img {
+    height: 160px !important;
+  }
+  
+  .project-stack {
+    flex-wrap: wrap !important;
+  }
+  
+  .blog-post {
+    padding: 1.2rem !important;
+  }
+  
+  .blog-title {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Fix images to be responsive */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Fix any overflow issues */
+body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+
+/* Fix grid layouts */
+.projects-grid,
+.features-grid {
+  display: grid !important;
+  width: 100% !important;
+}
+
+/* Ensure buttons are touch-friendly */
+.btn,
+button,
+.nav-hamburger,
+.social-btn {
+  min-height: 44px !important;
+  min-width: 44px !important;
+}
+
+/* Fix spacing on mobile */
+section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Fix text readability on mobile */
+p, .proj-desc, .feat-card p {
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Fix nav mobile menu */
+.nav-mobile {
+  background: #0F0F0F !important;
+  z-index: 1000 !important;
+}
+
+.nav-mobile a {
+  font-size: 1.2rem !important;
+  padding: 0.8rem 0 !important;
+}

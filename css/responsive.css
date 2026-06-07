@@ -1,179 +1,341 @@
-/* Mobile Navigation */
+/* ============================================ */
+/* COMPLETE RESPONSIVE.CSS - Mobile First */
+/* ============================================ */
+
+/* Hide desktop elements on mobile */
 @media (max-width: 900px) {
-  .nav-links, 
-  .nav-phone { 
-    display: none; 
+  .nav-links,
+  .nav-phone {
+    display: none !important;
   }
   
-  .nav-hamburger { 
-    display: block; 
+  .nav-hamburger {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
   }
   
+  .nav-hamburger span {
+    width: 25px !important;
+    height: 2px !important;
+    background: #F97316 !important;
+    border-radius: 2px !important;
+  }
+  
+  /* Mobile menu */
   .nav-mobile {
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-dark);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    padding: 5rem 2rem;
-    gap: 1.5rem;
-    font-size: 1.5rem;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 700;
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #0F0F0F !important;
+    z-index: 999 !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.3s ease !important;
+    padding: 80px 24px 24px !important;
+    gap: 16px !important;
   }
   
-  .nav-mobile.open { 
-    transform: translateX(0); 
+  .nav-mobile.open {
+    transform: translateX(0) !important;
   }
   
-  .nav-mobile a { 
-    color: white; 
-    text-decoration: none; 
-    border-bottom: 1px solid var(--border-color); 
-    padding: 0.75rem 0;
-    font-size: 1.3rem;
+  .nav-mobile a {
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid #2a2a2a !important;
   }
   
-  .nav-mobile a:hover {
-    color: var(--primary-orange);
+  .nav-mobile a:hover,
+  .nav-mobile a.active {
+    color: #F97316 !important;
   }
 }
 
-/* Tablet adjustments */
-@media (max-width: 768px) {
+/* Tablet styles (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
   .container {
-    padding: 0 20px;
+    padding: 0 32px !important;
   }
   
   .hero-title {
-    font-size: 2.8rem;
-  }
-  
-  .section-heading {
-    font-size: 2.2rem;
-  }
-  
-  .stats-inner {
-    justify-content: center;
-  }
-  
-  .stat-rule {
-    display: none;
+    font-size: 3.5rem !important;
   }
   
   .features-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   
   .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-inner {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .footer-nav {
-    justify-content: center;
-  }
-  
-  .footer-contact {
-    align-items: center;
-  }
-  
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-  
-  .projects-header {
-    flex-direction: column;
-  }
-  
-  .skill-pills {
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
-/* Small phones */
-@media (max-width: 480px) {
+/* Mobile styles (up to 767px) */
+@media (max-width: 767px) {
+  /* Container padding */
+  .container {
+    padding: 0 16px !important;
+  }
+  
+  /* Hero section */
+  .hero {
+    min-height: auto !important;
+    padding: 40px 0 !important;
+  }
+  
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-sub {
+    font-size: 0.95rem !important;
   }
   
   .hero-ctas {
-    flex-direction: column;
+    flex-direction: column !important;
+    gap: 12px !important;
   }
   
-  .btn {
-    width: 100%;
-    justify-content: center;
+  .hero-ctas .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  /* Stats bar */
+  .stats-bar {
+    padding: 16px 0 !important;
   }
   
   .stats-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 16px !important;
   }
   
   .stat {
-    text-align: center;
+    text-align: center !important;
+    min-width: 120px !important;
   }
   
+  .stat strong {
+    font-size: 1.5rem !important;
+  }
+  
+  .stat-rule {
+    display: none !important;
+  }
+  
+  /* Section spacing */
+  .features,
+  .projects,
+  .skills {
+    padding: 48px 0 !important;
+  }
+  
+  /* Section headings */
+  .section-heading {
+    font-size: 1.75rem !important;
+  }
+  
+  /* Feature cards */
   .features-grid {
-    gap: 1rem;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
   
   .feat-card {
-    padding: 1.5rem;
+    padding: 20px !important;
+  }
+  
+  .feat-card h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  /* Projects */
+  .projects-header {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
   
   .proj-body {
-    padding: 1.2rem;
+    padding: 16px !important;
   }
   
-  .skills-groups {
-    gap: 1.5rem;
+  .proj-body h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  .proj-links {
+    gap: 16px !important;
+  }
+  
+  /* Skills */
+  .skill-pills {
+    justify-content: center !important;
+  }
+  
+  .pill {
+    font-size: 0.8rem !important;
+    padding: 6px 14px !important;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 40px 0 20px !important;
+  }
+  
+  .footer-inner {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 24px !important;
   }
   
   .footer-nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-  }
-}
-
-/* Fix for sticky elements on mobile */
-@media (max-width: 768px) {
-  .sticky-photo,
-  .blog-sidebar,
-  .contact-card {
-    position: static;
-  }
-}
-
-/* Smooth scrolling for anchor links */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Hide cursor on touch devices */
-@media (max-width: 1024px) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none;
+    flex-direction: column !important;
+    gap: 12px !important;
   }
   
-  a, button, .btn, .feat-card, .proj-card {
-    cursor: pointer;
+  .footer-contact {
+    align-items: center !important;
+  }
+  
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 8px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  /* About page mobile */
+  .about-contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding: 32px 0 !important;
+  }
+  
+  .sticky-photo {
+    position: static !important;
+  }
+  
+  .profile-img {
+    max-width: 200px !important;
+    margin: 0 auto 20px !important;
+  }
+  
+  .contact-card {
+    position: static !important;
+    padding: 20px !important;
+  }
+  
+  .exp-item {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 16px 0 !important;
+  }
+  
+  /* Projects/Blog page mobile */
+  .projects-blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding: 32px 0 !important;
+  }
+  
+  .project-img {
+    height: 160px !important;
+  }
+  
+  .blog-post {
+    padding: 16px !important;
+  }
+  
+  .blog-title {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Small phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.6rem !important;
+  }
+  
+  .btn {
+    padding: 10px 16px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .section-heading {
+    font-size: 1.5rem !important;
+  }
+  
+  .feat-card h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  .proj-body h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .project-stack {
+    gap: 6px !important;
+  }
+  
+  .stack-item {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* Fix touch targets on mobile */
+@media (max-width: 768px) {
+  a, 
+  button,
+  .btn,
+  .social-btn,
+  .nav-hamburger,
+  .proj-link,
+  .feat-link {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .nav-hamburger {
+    min-height: auto !important;
+  }
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  .hero {
+    min-height: -webkit-fill-available !important;
   }
 }
