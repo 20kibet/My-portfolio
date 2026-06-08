@@ -318,10 +318,14 @@
     gap: 10px !important;
     align-items: flex-start !important;
   }
-  .footer-contact {
-    align-items: flex-start !important;
-    flex: 1 !important;
-    min-width: 140px !important;
+  .footer-contact a[href^="mailto"] {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  display: block;
+   }
+
   }
   .footer-col ul {
     align-items: flex-start !important;
@@ -335,7 +339,7 @@
     font-size: 0.72rem !important;
     margin-top: 1.5rem !important;
   }
-}
+
 
 /* ===== SMALL PHONES: up to 480px ===== */
 @media (max-width: 480px) {
