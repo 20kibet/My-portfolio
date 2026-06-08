@@ -16,6 +16,9 @@
     background: none !important;
     border: none !important;
     cursor: pointer !important;
+    padding: 10px !important;
+    z-index: 1001 !important;
+    position: relative !important;
   }
   
   .nav-hamburger span {
@@ -23,9 +26,10 @@
     height: 2px !important;
     background: #F97316 !important;
     border-radius: 2px !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
   }
   
-  /* Mobile menu */
   .nav-mobile {
     display: flex !important;
     flex-direction: column !important;
@@ -35,7 +39,7 @@
     width: 100% !important;
     height: 100% !important;
     background: #0F0F0F !important;
-    z-index: 999 !important;
+    z-index: 1000 !important;
     transform: translateX(100%) !important;
     transition: transform 0.3s ease !important;
     padding: 80px 24px 24px !important;
@@ -82,12 +86,10 @@
 
 /* Mobile styles (up to 767px) */
 @media (max-width: 767px) {
-  /* Container padding */
   .container {
     padding: 0 16px !important;
   }
   
-  /* Hero section */
   .hero {
     min-height: auto !important;
     padding: 40px 0 !important;
@@ -112,7 +114,6 @@
     justify-content: center !important;
   }
   
-  /* Stats bar */
   .stats-bar {
     padding: 16px 0 !important;
   }
@@ -136,19 +137,16 @@
     display: none !important;
   }
   
-  /* Section spacing */
   .features,
   .projects,
   .skills {
     padding: 48px 0 !important;
   }
   
-  /* Section headings */
   .section-heading {
     font-size: 1.75rem !important;
   }
   
-  /* Feature cards */
   .features-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
@@ -162,7 +160,6 @@
     font-size: 1.3rem !important;
   }
   
-  /* Projects */
   .projects-header {
     flex-direction: column !important;
     gap: 16px !important;
@@ -185,7 +182,6 @@
     gap: 16px !important;
   }
   
-  /* Skills */
   .skill-pills {
     justify-content: center !important;
   }
@@ -195,7 +191,6 @@
     padding: 6px 14px !important;
   }
   
-  /* Footer */
   .footer {
     padding: 40px 0 20px !important;
   }
@@ -221,52 +216,6 @@
     gap: 8px !important;
     font-size: 0.7rem !important;
   }
-  
-  /* About page mobile */
-  .about-contact-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-    padding: 32px 0 !important;
-  }
-  
-  .sticky-photo {
-    position: static !important;
-  }
-  
-  .profile-img {
-    max-width: 200px !important;
-    margin: 0 auto 20px !important;
-  }
-  
-  .contact-card {
-    position: static !important;
-    padding: 20px !important;
-  }
-  
-  .exp-item {
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    padding: 16px 0 !important;
-  }
-  
-  /* Projects/Blog page mobile */
-  .projects-blog-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-    padding: 32px 0 !important;
-  }
-  
-  .project-img {
-    height: 160px !important;
-  }
-  
-  .blog-post {
-    padding: 16px !important;
-  }
-  
-  .blog-title {
-    font-size: 1.1rem !important;
-  }
 }
 
 /* Small phones (max-width: 480px) */
@@ -291,14 +240,6 @@
   .proj-body h3 {
     font-size: 1.1rem !important;
   }
-  
-  .project-stack {
-    gap: 6px !important;
-  }
-  
-  .stack-item {
-    font-size: 0.65rem !important;
-  }
 }
 
 /* Fix touch targets on mobile */
@@ -316,10 +257,6 @@
     align-items: center !important;
     justify-content: center !important;
   }
-  
-  .nav-hamburger {
-    min-height: auto !important;
-  }
 }
 
 /* Prevent horizontal scroll */
@@ -331,11 +268,4 @@ body {
 img {
   max-width: 100% !important;
   height: auto !important;
-}
-
-/* Fix for iOS Safari */
-@supports (-webkit-touch-callout: none) {
-  .hero {
-    min-height: -webkit-fill-available !important;
-  }
 }
